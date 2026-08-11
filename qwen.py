@@ -5,11 +5,12 @@ chatbot = pipeline(
     model="Qwen/Qwen2.5-0.5B-Instruct",
     device=0, #put at GPU0 - RTX 3060 - 12GB - Which is in my computer
 )
+content = input("Enter input: ")
 
 messages = [
     {
         "role": "user",
-        "content": "What is linear algebra? Answer in one sentence.",
+        "content": content,
     }
 ]
 
@@ -19,8 +20,9 @@ result = chatbot(
     do_sample=False,
 )
 
-content = input("Enter input: ")
 
 answer = "AI: " + result[0]["generated_text"][-1]["content"]
+content = "User: " + content
 print("\n\n")
+print(content)
 print(answer)
